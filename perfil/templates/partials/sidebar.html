@@ -1,0 +1,28 @@
+{% load static %}
+<aside class="main-sidebar sidebar-dark-primary elevation-1 fundo-bd">
+  <a href="{% url 'index' %}" class="brand-link text-decoration-none text-center">Dashboard pessoal</a>
+  <div class="sidebar">
+    <nav class="mt-2">
+      <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu">
+        <li class="nav-item">
+          <a href="{% url 'index' %}" class="nav-link">
+            <i class="fa-solid fa-home fa-lg nav-icon"></i>
+            <p class="text">Início</p>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a href="{% url 'login' %}" class="nav-link">
+            <i class="fa-solid fa-arrow-right-from-bracket fa-lg"></i>
+            <p class="text">login</p>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a href="{% url 'logout' %}" class="nav-link">
+            <i class="fa-solid fa-arrow-right-from-bracket fa-lg"></i>
+            <p class="text">Sair</p>
+          </a>
+        </li>
+      </ul>
+    </nav>
+  </div>
+</aside>

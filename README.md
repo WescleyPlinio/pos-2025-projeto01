@@ -7,5 +7,4 @@
 - Apenas um repositório por dupla.
 
 ## Equipe
-- Nome 1
-- Nome 2
+- Wescley Plínio
