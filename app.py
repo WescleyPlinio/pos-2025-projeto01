@@ -43,35 +43,38 @@ def index():
 def user():
     if 'suap_token' not in session:
         return redirect(url_for('index'))
-
-    suap_user = User(oauth)
-    user = suap_user.get_user_data()
-    return render_template('user.html', user=user)
+    else:
+        suap_user = User(oauth)
+        user = suap_user.get_user_data()
+        return render_template('user.html', user=user)
 
 @app.route("/boletim/", methods=["GET", "POST"])
 def boletim():
-    suap_user = User(oauth)
+    if 'suap_token' not in session:
+        return redirect(url_for('index'))
+    else:        
+        suap_user = User(oauth)
 
-    if request.method == "POST":
-        periodo = request.form["periodo"]
-        return redirect(url_for("boletim", periodo=periodo))
+        if request.method == "POST":
+            periodo = request.form["periodo"]
+            return redirect(url_for("boletim", periodo=periodo))
 
-    if request.method == "GET":
-        periodo = request.args.get("periodo", "2025.1")
+        if request.method == "GET":
+            periodo = request.args.get("periodo", "2025.1")
 
-    ano_letivo, periodo_letivo = periodo.split(".")
+        ano_letivo, periodo_letivo = periodo.split(".")
 
-    user = suap_user.get_user_data()
-    boletim = suap_user.get_boletim(ano_letivo, periodo_letivo)
-    periodos = suap_user.get_periodos()
+        user = suap_user.get_user_data()
+        boletim = suap_user.get_boletim(ano_letivo, periodo_letivo)
+        periodos = suap_user.get_periodos()
 
-    return render_template(
-        "boletim.html",
-        user=user,
-        boletim_data=boletim,
-        periodos=periodos,
-        selected_periodo=periodo
-    )
+        return render_template(
+            "boletim.html",
+            user=user,
+            boletim_data=boletim,
+            periodos=periodos,
+            selected_periodo=periodo
+        )
 
 @app.route('/login/')
 def login():
