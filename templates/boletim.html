@@ -1,11 +1,10 @@
 {% extends 'base.html' %}
+{% block title %}Boletim de {{ user.nome_usual }}{% endblock title %}
 
 {% block content %}
-<div class="container mt-4">
-    <div class="d-flex justify-content-between align-items-center mb-3">
-        <h2>Boletim de {{ user.nome_usual }}</h2>
-    </div>
-    <form action="{{ url_for('boletim') }}" method="get">
+  <div class="card">
+    <div class="card-header">
+      <form class="w-100" action="{{ url_for('boletim') }}" method="get">
         <label for="periodo" class="form-label">Escolha o período:</label>
         <div class="input-group mb-3">
             <select id="periodo" name="periodo" class="form-select">
@@ -14,37 +13,39 @@
                 <option value="2024.1" {% if selected_periodo == '2024.1' %}selected{% endif %}>2024.1</option>
                 <option value="2025.1" {% if selected_periodo == '2025.1' %}selected{% endif %}>2025.1</option>
             </select>
-            <button type="submit" class="btn btn-outline-secondary">Filtrar</button>
+            <button type="submit" class="btn btn-outline-primary"><i class="fa fa-search fa-sm"></i></button>
         </div>
-    </form>
-
-    <table class="table table-striped mt-4">
-        <thead>
+      </form>
+    </div>
+    <div class="card-body table-responsive p-0">
+        <table class="table table-striped text-nowrap">
+          <thead>
             <tr>
-                <th>Disciplina</th>
-                <th>Faltas</th>
-                <th>Nota Etapa 1</th>
-                <th>Nota Etapa 2</th>
-                <th>Nota Etapa 3</th>
-                <th>Nota Etapa 4</th>
-                <th>Nota Final</th>
-                <th>Situação</th>
+              <th>Disciplina</th>
+              <th>Faltas</th>
+              <th>Nota Etapa 1</th>
+              <th>Nota Etapa 2</th>
+              <th>Nota Etapa 3</th>
+              <th>Nota Etapa 4</th>
+              <th>Nota Final</th>
+              <th>Situação</th>
             </tr>
-        </thead>
-        <tbody>
-            {% for data in boletim_data %}
-                <tr>
-                    <td>{{ data.disciplina }}</td>
-                    <td>{{ data.numero_faltas }}</td>
-                    <td>{{ data.nota_etapa_1.nota if data.nota_etapa_1.nota else 'N/A' }}</td>
-                    <td>{{ data.nota_etapa_2.nota if data.nota_etapa_2.nota else 'N/A' }}</td>
-                    <td>{{ data.nota_etapa_3.nota if data.nota_etapa_3.nota else 'N/A' }}</td>
-                    <td>{{ data.nota_etapa_4.nota if data.nota_etapa_4.nota else 'N/A' }}</td>
-                    <td>{{ data.media_final_disciplina if data.media_final_disciplina else 'N/A' }}</td>
-                    <td>{{ data.situacao }}</td>
-                </tr>
-            {% endfor %}
-        </tbody>
-    </table>
-</div>
+          </thead>
+          <tbody>
+              {% for data in boletim_data %}
+                  <tr>
+                      <td>{{ data.disciplina }}</td>
+                      <td>{{ data.numero_faltas }}</td>
+                      <td>{{ data.nota_etapa_1.nota if data.nota_etapa_1.nota else 'N/A' }}</td>
+                      <td>{{ data.nota_etapa_2.nota if data.nota_etapa_2.nota else 'N/A' }}</td>
+                      <td>{{ data.nota_etapa_3.nota if data.nota_etapa_3.nota else 'N/A' }}</td>
+                      <td>{{ data.nota_etapa_4.nota if data.nota_etapa_4.nota else 'N/A' }}</td>
+                      <td>{{ data.media_final_disciplina if data.media_final_disciplina else 'N/A' }}</td>
+                      <td>{{ data.situacao }}</td>
+                  </tr>
+              {% endfor %}
+          </tbody>
+        </table>
+    </div>
+  </div>
 {% endblock %}
