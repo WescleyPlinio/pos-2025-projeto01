@@ -5,51 +5,73 @@
 
 {% block content %}
   <div class="row mt-5">
-    <div class="col-md-2">
-      <img src="{{ user.url_foto_150x200 or user.avatar_url }}" alt="{{ user.nome_usual }}" class="rounded-circle w-100 object-fit-cover mb-2" style="aspect-ratio: 1 / 1;" />
-    </div>
+    {% if user.url_foto_150x200 or user.avatar_url %}
+      <div class="col-md-2">
+        <img src="{{ user.url_foto_150x200 or user.avatar_url }}" alt="{{ user.nome_usual }}" class="rounded-circle w-100 object-fit-cover mb-2" style="aspect-ratio: 1 / 1;" />
+      </div>
+    {% endif %}
     <div class="col-md-10">
       <div class="row g-3">
-        <div class="col-md-6 border-bottom">
-          <h6 class="mb-0 text-primary">Nome completo:</h6>
-          <p>{{ user.vinculo.nome }}</p>
-        </div>
-        <div class="col-md-6 border-bottom">
-          <h6 class="mb-0 text-primary">CPF:</h6>
-          <p>{{ user.cpf }}</p>
-        </div>
-        <div class="col-12 border-bottom">
-          <h6 class="mb-0 text-primary">Lattes:</h6>
-          <p>{{ user.vinculo.curriculo_lattes }}</p>
-        </div>
-        <div class="col-md-6 border-bottom">
-          <h6 class="mb-0 text-primary">Vínculo:</h6>
-          <p>{{ user.tipo_vinculo }}</p>
-        </div>
-        <div class="col-md-6 border-bottom">
-          <h6 class="mb-0 text-primary">Matrícula:</h6>
-          <p>{{ user.matricula }}</p>
-        </div>
-        <div class="col-12 border-bottom">
-          <h6 class="mb-0 text-primary">Email:</h6>
-          <p>{{ user.email }}</p>
-        </div>
-        <div class="col-md-6 border-bottom">
-          <h6 class="mb-0 text-primary">Curso:</h6>
-          <p>{{ user.vinculo.curso }}</p>
-        </div>
-        <div class="col-md-6 border-bottom">
-          <h6 class="mb-0 text-primary">Turno:</h6>
-          <p>{{ user.vinculo.turno }}</p>
-        </div>
-        <div class="col-md-6 border-bottom">
-          <h6 class="mb-0 text-primary">Campus:</h6>
-          <p>{{ user.vinculo.campus }}</p>
-        </div>
-        <div class="col-md-6 border-bottom">
-          <h6 class="mb-0 text-primary">Situação:</h6>
-          <p>{{ user.vinculo.situacao }}</p>
-        </div>
+        {% if user.vinculo.nome %}
+          <div class="col-md-6 border-bottom">
+            <h6 class="mb-0 text-primary">Nome completo:</h6>
+            <p>{{ user.vinculo.nome }}</p>
+          </div>
+        {% endif %}
+        {% if user.cpf %}
+          <div class="col-md-6 border-bottom">
+            <h6 class="mb-0 text-primary">CPF:</h6>
+            <p>{{ user.cpf }}</p>
+          </div>
+        {% endif %}
+        {% if user.vinculo.curriculo_lattes %}
+          <div class="col-12 border-bottom">
+            <h6 class="mb-0 text-primary">Lattes:</h6>
+            <p>{{ user.vinculo.curriculo_lattes }}</p>
+          </div>
+        {% endif %}
+        {% if user.tipo_vinculo %}
+          <div class="col-md-6 border-bottom">
+            <h6 class="mb-0 text-primary">Vínculo:</h6>
+            <p>{{ user.tipo_vinculo }}</p>
+          </div>
+        {% endif %}
+        {% if user.matricula %}
+          <div class="col-md-6 border-bottom">
+            <h6 class="mb-0 text-primary">Matrícula:</h6>
+            <p>{{ user.matricula }}</p>
+          </div>
+        {% endif %}
+        {% if user.email %}
+          <div class="col-12 border-bottom">
+            <h6 class="mb-0 text-primary">Email:</h6>
+            <p>{{ user.email }}</p>
+          </div>
+        {% endif %}
+        {% if user.vinculo.curso %}
+          <div class="col-md-6 border-bottom">
+            <h6 class="mb-0 text-primary">Curso:</h6>
+            <p>{{ user.vinculo.curso }}</p>
+          </div>
+        {% endif %}
+        {% if user.vinculo.turno %}
+          <div class="col-md-6 border-bottom">
+            <h6 class="mb-0 text-primary">Turno:</h6>
+            <p>{{ user.vinculo.turno }}</p>
+          </div>
+        {% endif %}
+        {% if user.vinculo.campus %}
+          <div class="col-md-6 border-bottom">
+            <h6 class="mb-0 text-primary">Campus:</h6>
+            <p>{{ user.vinculo.campus }}</p>
+          </div>
+        {% endif %}
+        {% if user.vinculo.situacao %}
+          <div class="col-md-6 border-bottom">
+            <h6 class="mb-0 text-primary">Situação:</h6>
+            <p>{{ user.vinculo.situacao }}</p>
+          </div>
+        {% endif %}
       </div>
     </div>
   </div>
